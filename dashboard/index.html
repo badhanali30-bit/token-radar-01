@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Token Radar ranks 200 pre-token DeFi protocols by an implied value from TVL, seven-day growth and age with no token, with a farm plan for each.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Token Radar — pre-token protocols ranked by implied value</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="masthead">
+  <div class="masthead-inner">
+    <div>
+      <p class="eyebrow">Token launch radar</p>
+      <h1>Which protocol launches next — and what is it worth?</h1>
+      <p class="lede">Every protocol below records no token. Each is ranked by an implied value
+      computed from its own TVL, its seven-day growth and how long it has run with no token.
+      Pick a row for its farm plan.</p>
+    </div>
+    <dl class="mast-stats" id="mast-stats"></dl>
+  </div>
+</header>
+<main class="wrap">
+  <section class="toolbar" aria-label="Board controls">
+    <label class="field grow">Search
+      <input id="q" type="search" placeholder="Name, category or chain…" autocomplete="off">
+    </label>
+    <label class="field">Category
+      <select id="category"></select>
+    </label>
+    <label class="field">Chain
+      <select id="chain"></select>
+    </label>
+    <label class="field">Sort by
+      <select id="sort">
+        <option value="implied">Implied value</option>
+        <option value="tvl">TVL</option>
+        <option value="growth">7-day growth</option>
+        <option value="age">Age with no token</option>
+        <option value="name">Name A–Z</option>
+      </select>
+    </label>
+    <div class="tabs" role="tablist" aria-label="Token status">
+      <button type="button" id="tab-pre" role="tab" aria-selected="true">Pre-token board</button>
+      <button type="button" id="tab-live" role="tab" aria-selected="false">Already tokenized</button>
+    </div>
+  </section>
+  <p class="count" id="count" aria-live="polite"></p>
+  <section class="board" id="board" aria-label="Ranked board"></section>
+  <aside class="detail" id="detail" aria-label="Protocol detail" hidden></aside>
+  <section class="model" id="model">
+    <h2>How the implied value is computed</h2>
+    <p class="model-formula" id="model-formula"></p>
+    <p>TVL is the scale of the business a token would one day represent, so value starts as
+    32% of TVL. Seven-day growth is momentum — a protocol gaining capital now is worth more
+    than one losing it — weighted 0.8 and clamped so one freak week cannot decide the board.
+    Age with no token is durability: a protocol that has run for years without issuing a token
+    has survived cycles and still has its launch ahead of it, rewarded on a log curve so the
+    first year matters most. No name is special-cased; the same function scores every row,
+    and the detail view recomputes each row in the open.</p>
+    <p class="fineprint">Implied value is the board's own estimate, not a price and not a
+    prediction that a token will launch. “Records no token” means the snapshot's DefiLlama
+    record carries none — a protocol on the list may still have a token its record does not
+    carry. Source: <span id="source"></span></p>
+  </section>
+</main>
+<footer class="foot"><p>Token Radar · snapshot <span id="asof"></span> · model radar-2-compass ·
+the watchlist is the floor: every protocol at $50M+ TVL with no token on record, plus the
+early radar below it. All figures come from the sealed snapshot; nothing here is fetched live.</p></footer>
+<script src="../data.js"></script>
+<script src="radar.js"></script>
+</body>
+</html>
